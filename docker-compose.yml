@@ -2,19 +2,20 @@ services:
   php:
     build:
       context: .
-      dockerfile: Dockerfile-php
+      dockerfile: ./php/Dockerfile-php
     volumes:
       - ./src:/var/www
+      - ./php/php.ini:/usr/local/etc/php/conf.d/custom.ini:ro
     expose:
       - "9000"
 
   nginx:
     build:
       context: .
-      dockerfile: Dockerfile-nginx
+      dockerfile: ./nginx/Dockerfile-nginx
     volumes:
       - ./src:/var/www
-      - ./default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     ports:
       - "80:80"
       - "443:443"
@@ -31,6 +32,7 @@ services:
       MYSQL_PASSWORD: apppassword
     volumes:
       - dbdata:/var/lib/mysql
+      - ./mysql/my.cnf:/etc/mysql/conf.d/z-custom.cnf:ro
     ports:
       - "3306:3306"
 
