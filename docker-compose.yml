@@ -32,7 +32,6 @@ services:
       MYSQL_PASSWORD: apppassword
     volumes:
       - dbdata:/var/lib/mysql
-      - ./mysql/my.cnf:/etc/mysql/conf.d/z-custom.cnf:ro
     ports:
       - "3306:3306"
 
