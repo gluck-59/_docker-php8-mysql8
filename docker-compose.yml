@@ -29,7 +29,7 @@ services:
     image: mysql:8.0
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD:
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
       MYSQL_DATABASE: appdb
       MYSQL_USER: appuser
       MYSQL_PASSWORD: apppassword
